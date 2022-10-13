@@ -2,6 +2,10 @@
 
 ## Table of Contents:
 
+-   [Intro](#intro)
+-   [More Array Syntax](#more-array-syntax)
+-   [Multidimensional Arrays](#multidimensional-arrays)
+
 ---
 
 ## Intro:
@@ -41,6 +45,8 @@ ages[0] = 21; // also valid!
 
 -   We are not just limited to strings and numbers. We can also use `boolean` to annotate arrays along with other annotations which will be reviewed next.
 
+-   [Back to Top](#table-of-contents)
+
 ---
 
 ## More Array Syntax:
@@ -76,6 +82,8 @@ coords.push({ x: 23, y: 0 });
 
 -   Main thing to understand is that we can use our `custom types` when creating an array.
 
+-   [Back to Top](#table-of-contents)
+
 ---
 
 ## Multidimensional Arrays:
@@ -107,3 +115,5 @@ const board: string[][][] = [[[1]]];
 -   As you can see from the example above, even with just **ONE** number, having a multidimensional array is pretty confusing and a bit hard to keep track of but all that needs to be understood is that nesting arrays just means that we add mutiple array brackets next to each other.
 
 -   [Back to Top](#table-of-contents)
+
+---
