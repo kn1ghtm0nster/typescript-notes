@@ -109,17 +109,156 @@ const responses: HTTPResponse[] = [[200, "OK"], [404, "NOT FOUND"]];
 
 ## Intro to Enums:
 
+- The next type of data that is only available in `TypeScript` is called an `Enum` and in short, this data type will allow us to define a set of named constants which will either be number or string types.
+
+- __NOTE :__ There may be some debate within your organization about using `Enums` and there are definitely some good use cases along with bad use cases.
+
+- First, let's look at the __BASIC__ use cases for this data type.
+
+EXAMPLE 3:
+
+```typescript
+enum Responses {
+    no, // 0
+    yes, // 1
+    maybe // 2
+}
+```
+
+- The example above is showing the basic definition of an `Enum` type.
+
+- Furthermore, the information __WITHIN__ the object itself are __NOT__ the names that we have provided but rather a numeric value starting from the number 0.
+
+- This means that the default behavior of an `Enum` type is a numeric data type.
+
+- If we wanted, however, we could also reset our responses to be string types instead making our code look something like this:
+
+EXAMPLE 3.1:
+
+```typescript
+enum Responses {
+    no = "NO", // "NO"
+    yes = "YES", // "YES"
+    maybe = "MAYBE" // "MAYBE"
+}
+```
+
+- In the updated example above, we are now using strings to represent each of the properties of the `Response` enum.
+
+- Going another step further, say that we wanted to add differing numeric values. This too is supported and if we wanted to update our resopnses to return a numner on the `no` property, the change would look like this:
+
+EXAMPLE 3.2:
+
+```typescript
+enum Responses {
+    no = 401, // "NO"
+    yes = "YES", // "YES"
+    maybe = "MAYBE" // "MAYBE"
+}
+```
+
+- Now, the example above will contain a numeric value for the `no` property while everything else will be a string value.
+
+- With all this information, let's suppose that we wanted to create our own `Enum` type that helps track order status for an application that we are building.
+
+- This `Enum` type would be named `OrderStatus` and would contain a `PENDING`, `SHIPPED`, `DELIVERED`, or `RETURNED` status so that we can display this information on our application's frontend UI.
+
+- Taking all this into consideration, the code will look something like this:
+
+EXAMPLE 3.3:
+
+```typescript
+enum OrderStatus{
+    PENDING,
+    SHIPPED,
+    DELIVERED,
+    RETURNED
+}
+
+const status: OrderStatus = OrderStatus.PENDING;
+```
+
+- In the example above, not only did we set a new `OrderStatus` enum, but we also set a new variable `status` which will be the __TYPE__ of the `OrderStatus` enum.
+
+- In addition, if you hover above the `status` variable that was set, you'll see that the type is __NOT__ the numerical value but rather the actual `Enum` property that was set meaning that your editor will show `status: OrderStatus.PENDING`.
+
+- Next, we will make things more realistic by creating a function that __ENSURES__ an argument is of our `OrderStatus` enum type so that our application can respond correctly.
+
+- This addionally means that `Enums` can be used in variables __AND__ as function arguments to be passed in!
+
+EXAMPLE 3.4:
+
+```typescript
+enum OrderStatus{
+    PENDING,
+    SHIPPED,
+    DELIVERED,
+    RETURNED
+}
+
+const status: OrderStatus = OrderStatus.PENDING;
+
+function isDelivered(status: OrderStatus){
+    return status === OrderStatus.DELIVERED;
+}
+
+isDelivered(status);
+```
+
+- In the example above, our function `isDelivered` will be sent a `OrderStatus` enum which will be checked against the desired value to return either `true` or `false` (item is delivered or is not delivered).
+
+- As we hinted preivously, we also have the flexibility of updating the value of `Enum` properties and we will look at that in more detail next.
+
 - [Back to Top](#table-of-contents)
 
 ---
 
 ## Enums P2:
 
+- As we previously mentioned, there may be times where we need to use strings in our `Enum` types to make our code easier to understand.
+
+- Keep in mind that ultimately, the use for `Enums` is to have a set of constant variables that we can reference quickly in our code.
+
+- Suppose that we wanted to keep track of a user's arrow keys. While we could use an object to store this information, we can make use of `enum` and define our own set of constant variables to use strings as shown below:
+
+EXAMPLE 4:
+
+```typescript
+enum ArrowKeys{
+    UP = "UP",
+    DOWN = "DOWN",
+    LEFT = "LEFT",
+    RIGHT = "RIGHT"
+}
+```
+
+- Now, if we were to call `ArrowKeys.UP`, we would see `"UP"` as the actual value instead of a number therefore making it easier to understand the type of data that is being tracked.
+
+- Lastly, we will review the arguments both for using `Enums` and not using them along with the overall feeling of the community of developers.
+
 - [Back to Top](#table-of-contents)
 
 ---
 
 ## Enums Behind the Scenes:
+
+- To get a better understanding of why the community may feel strongly about using `Enums` in TypeScript, we first need to understand what happens when we compile TypeScript code that contains `Enums`.
+
+- The reason this needs to be well understood is because `Enums` do result in more code being used after compilation in order for JavaScript to understand this data type.
+
+- To see this in action, visit the [playground page](https://www.typescriptlang.org/play?#) of TypeScript.
+
+- If you prefer __NOT__ to see the results in action, then all you need to keep in mind is that `Enums` basically translate back to an actual object being created in JavaScript and this means that more code is required to achieve the same results.
+
+- Once the object is created in JavaScript however, future references to this object will operate just like TypeScript.
+
+- Now, taking the above into consideration, if we add the word `const` in front of our `Enum` definition, you will notice that suddenly all the extra code disappears.
+
+- In addition, the JavaScript code will now show the actual value for the `Enum` property that was called instead of just a reference to the overall object.
+
+- So why does the community get into deep arguments when discussing `Enums`? Mainly because we can achieve these same results in TypeScript by giving options to a standard variable such as `const example: string = "DELIVERED" | "PROCESSING";`.
+
+- Ultimately, using a variable is a good option but you will not get the auto-complete functionality in you code.
 
 - [Back to Top](#table-of-contents)
 
